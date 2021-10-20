@@ -146,7 +146,7 @@
   </div>
 </div>
 
-<!-- Student login-form -->
+<!-- login-form -->
 <div class="modal fade" id="log-in-form" tabindex="-1" role="dialog" aria-labelledby="log-in-formTitle" aria-hidden="true" style="background: none;">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
@@ -177,9 +177,62 @@
     </div>
   </div>
 </div> 
-<!-- Admin login-form -->
+
+<div class="modal fade" id="admin-log-in-form" tabindex="-1" role="dialog" aria-labelledby="log-in-formTitle" aria-hidden="true" style="background: none;">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">LOG IN</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">  
+      <center>
+        <p ><a href="#" id="student-trigger"  style="text-decoration:none">Student</a> &nbsp|&nbsp<span style="color: gray;"> Admin</p>
+        <form class="login-form" id="admin-log-in-form" action="/admin-login" method="POST">
+            <input type="text" placeholder="username" name='admin-uname'/>
+            <br>
+            <input type="password" placeholder="password" name='admin-password'/>
+            <br>
+            <button type="submit" class="btn btn-primary p-3">Log in</button>
+        </form>
+        <br><p class="message">Not Registered yet? <a href="#" id="admin-next-trigger">Register</a></p>
+      </div>
+      </center>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div> 
+
+<script>
+    $("#next-trigger").click(function(){
+      $('#log-in-form').modal('hide');
+      $('#sign-up-form').modal('show');
+    });
 
 
+    $("#back-trigger").click(function(){
+      $('#sign-up-form').modal('hide');
+      $('#log-in-form').modal('show');
+    });
+
+    $("#admin-trigger").click(function(){
+      $('#log-in-form').modal('hide');
+      $('#admin-log-in-form').modal('show');
+    })
+
+     $("#admin-next-trigger").click(function(){
+      $('#admin-log-in-form').modal('hide');
+      $('#sign-up-form').modal('show');
+    });
+    $("#student-trigger").click(function(){
+      $('#log-in-form').modal('show');
+      $('#admin-log-in-form').modal('hide');
+    })
+</script>
 
   <div class="main-image">  
   </div>
