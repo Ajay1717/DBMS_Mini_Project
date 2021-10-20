@@ -89,7 +89,6 @@ def base():
     case=0
     return render_template('index.html')
 
-#Student login
 @app.route('/login', methods =['GET', 'POST'])
 def login():
     msg = ''
@@ -109,7 +108,6 @@ def login():
             print('Incorrect username / password !')
     return render_template('index.html', msg = msg)
 
-#Admin login
 @app.route('/admin-login', methods =['GET', 'POST'])
 def admin_login():
     msg = ''
@@ -130,7 +128,6 @@ def admin_login():
     return render_template('index.html', msg = msg)
 
 
-#Logout
 @app.route('/logout')
 def logout():
     session.pop('loggedin', None)
