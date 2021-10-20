@@ -147,7 +147,36 @@
 </div>
 
 <!-- Student login-form -->
-
+<div class="modal fade" id="log-in-form" tabindex="-1" role="dialog" aria-labelledby="log-in-formTitle" aria-hidden="true" style="background: none;">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">LOG IN</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">  
+        <center>
+          <p ><span style="color: gray;">Student</span> &nbsp|&nbsp <a href="#" id="admin-trigger" style="text-decoration:none">Admin</a></p>
+          <form class="login-form" id="log-in-form" action="/login" method="POST">
+              <input type="text" placeholder="username" name='uname'/>
+              <br>
+              <input type="password" placeholder="password" name='password'/>
+              <br>
+              <button type="submit" class="btn btn-primary p-3">Log in</button>
+          </form>
+          <br><p class="message">Not Registered yet? <a href="#" id="next-trigger">Register</a></p>
+        </center>
+      </div>
+      
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        
+      </div>
+    </div>
+  </div>
+</div> 
 <!-- Admin login-form -->
 
 

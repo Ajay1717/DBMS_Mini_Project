@@ -90,10 +90,35 @@ def base():
     return render_template('index.html')
 
 #Student login
+@app.route('/login', methods =['GET', 'POST'])
+def login():
+    msg = ''
+    if request.method == 'POST' and 'uname' in request.form and 'password' in request.form:
+        username = request.form['uname']
+        password = request.form['password']
+        cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+        cursor.execute('SELECT * FROM RegisterStudent WHERE username = % s AND pswd = % s', (username, password, ))
+        account = cursor.fetchone()
+        if account:
+            session['loggedin'] = True
+            # session['id'] = account['id']
+            session['username'] = account['username']
+            print('Logged in successfully !')
+            return render_template('user.html', user = account['username'])
+        else:
+            print('Incorrect username / password !')
+    return render_template('index.html', msg = msg)
 
 #Admin login
 
 #Logout
+@app.route('/logout')
+def logout():
+    session.pop('loggedin', None)
+    # session.pop('id', None)
+    session.pop('username', None)
+    print("Logged out!")
+    return redirect(url_for('login'))
 
 if __name__=="__main__":
     app.run(debug=True)
