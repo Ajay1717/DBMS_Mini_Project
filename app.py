@@ -110,6 +110,25 @@ def login():
     return render_template('index.html', msg = msg)
 
 #Admin login
+@app.route('/admin-login', methods =['GET', 'POST'])
+def admin_login():
+    msg = ''
+    if request.method == 'POST' and 'admin-uname' in request.form and 'admin-password' in request.form:
+        admin_username = request.form['admin-uname']
+        admin_password = request.form['admin-password']
+        cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+        cursor.execute('SELECT * FROM adminDetails WHERE adminuser = % s AND pswrd = % s', (admin_username, admin_password, ))
+        admin = cursor.fetchone()
+        if admin:
+            session['loggedin'] = True
+            # session['id'] = admin['id']
+            session['adminuser'] = admin['adminuser']
+            print('Admin Logged in successfully !')
+            return render_template('admin.html', useradmin = admin['adminuser'])
+        else:
+            print('Incorrect username / password !')
+    return render_template('index.html', msg = msg)
+
 
 #Logout
 @app.route('/logout')
